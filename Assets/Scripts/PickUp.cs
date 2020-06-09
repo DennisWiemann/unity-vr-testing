@@ -105,8 +105,20 @@ public class PickUp : MonoBehaviour
         Vector3 otherEuler = other.transform.rotation.eulerAngles;
         Vector3 meEuler = transform.rotation.eulerAngles;
 
+        Debug.Log("other x: " + otherEuler.x + " me: " + meEuler.x);
+        Debug.Log("other y: " + otherEuler.y + " me: " + meEuler.y);
+        Debug.Log("other z: " + otherEuler.z + " me: " + meEuler.z);
+
+        float xDiff = Mathf.DeltaAngle(otherEuler.x, meEuler.x);
+        float yDiff = Mathf.DeltaAngle(otherEuler.x, meEuler.x);
+        float zDiff = Mathf.DeltaAngle(otherEuler.x, meEuler.x);
+
+        Debug.Log("xDiff " + xDiff);
+        Debug.Log("yDiff " + yDiff);
+        Debug.Log("zDiff " + zDiff);
+
         //check are axes correct
-        if (Mathf.Abs(otherEuler.x - meEuler.x) < tolerance && Mathf.Abs(otherEuler.y - meEuler.y) < tolerance && Mathf.Abs(otherEuler.z - meEuler.z) < tolerance) {
+        if (Mathf.Abs(xDiff) < tolerance && Mathf.Abs(yDiff) < tolerance && Mathf.Abs(zDiff) < tolerance) {
             
             Debug.Log("Can Snap!");
 

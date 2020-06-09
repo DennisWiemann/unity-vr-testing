@@ -280,7 +280,7 @@ MonoBehaviour:
   pickUpHelper: {fileID: 738900058}
   tempParent: {fileID: 738900057}
   rotationSpeed: 5
-  tolerance: 15
+  tolerance: 25
 --- !u!65 &267848006
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -407,7 +407,7 @@ MonoBehaviour:
   pickUpHelper: {fileID: 738900058}
   tempParent: {fileID: 738900057}
   rotationSpeed: 5
-  tolerance: 15
+  tolerance: 25
 --- !u!65 &694076984
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -912,7 +912,7 @@ MonoBehaviour:
   pickUpHelper: {fileID: 738900058}
   tempParent: {fileID: 738900057}
   rotationSpeed: 5
-  tolerance: 15
+  tolerance: 25
 --- !u!65 &1207146642
 BoxCollider:
   m_ObjectHideFlags: 0
