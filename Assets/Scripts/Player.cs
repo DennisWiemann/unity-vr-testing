@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     // Use this for initialization
     void Start () {
         // turn off the cursor
-        Cursor.lockState = CursorLockMode.Locked;		
+        //Cursor.lockState = CursorLockMode.Locked;	
 	}
 	
 	// Update is called once per frame
@@ -24,13 +24,6 @@ public class Player : MonoBehaviour
         straffe = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
         transform.Translate(straffe, 0, translation);
 
-        if (Input.GetKeyDown("escape")) {
-            // turn on the cursor
-            Cursor.lockState = CursorLockMode.None;
-        }
-    }
-
-    void Move() {
-       
+        
     }
 }
