@@ -15,7 +15,7 @@ public class Player : NetworkBehaviour
     // Use this for initialization
     void Start () {
         if (isLocalPlayer) {
-            GameObject cam = Instantiate(camPrefab, new Vector3(transform.position.x, transform.position.), Quaternion.identity);
+            GameObject cam = Instantiate(camPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z + 1), Quaternion.identity);
             cam.transform.parent = transform;
         }
 	}
