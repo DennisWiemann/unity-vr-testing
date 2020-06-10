@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class Player : MonoBehaviour
+public class Player : NetworkBehaviour
 {
     public float speed = 10.0f;
     private float translation;
@@ -18,6 +19,11 @@ public class Player : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (!isLocalPlayer) {
+            return;
+        }
+        
         // Input.GetAxis() is used to get the user's input
         // You can furthor set it on Unity. (Edit, Project Settings, Input)
         translation = Input.GetAxis("Vertical") * speed * Time.deltaTime;

@@ -1,16 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class PickUp : MonoBehaviour
 {
-    public Transform pickUpHelper;
-    public GameObject tempParent; 
     public float rotationSpeed = 20f;
-    private bool isPicked = false;
-    private Collider other;
     public float tolerance = 15;
+
+    private Transform pickUpHelper;
+    private GameObject tempParent; 
+    
+
+    private bool isPicked = false;
     private bool isSnapped = false;
+
+    private Collider other;
+
+
+   void Start()
+   {
+        
+   }
 
     void Update()
     {
@@ -25,6 +36,8 @@ public class PickUp : MonoBehaviour
 
     void OnMouseDown() 
     {
+        Debug.Log("Clicked!");
+
         if (!isSnapped) 
         {
             if (other != null) 
@@ -80,13 +93,26 @@ public class PickUp : MonoBehaviour
 
     void Pick()
     {
-        isPicked = true;
-        transform.GetComponent<Rigidbody>().useGravity = false;
-        transform.GetComponent<Rigidbody>().isKinematic = true;
-        transform.position = pickUpHelper.transform.position;
-        transform.rotation = pickUpHelper.transform.rotation;
 
-        transform.parent = tempParent.transform;
+        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")) {
+            if (player.GetComponent<NetworkIdentity>().isLocalPlayer) {
+                Debug.Log("Player detected");
+
+                pickUpHelper = player.transform.Find("Main Camera").transform.Find("PickUpHelper");
+
+                isPicked = true;
+                transform.GetComponent<Rigidbody>().useGravity = false;
+                transform.GetComponent<Rigidbody>().isKinematic = true;
+
+                transform.position = pickUpHelper.transform.position;
+                transform.rotation = pickUpHelper.transform.rotation;
+
+                transform.parent = pickUpHelper.transform;
+            }
+        
+        }
+
+        
     }
 
     void Drop()
@@ -97,6 +123,8 @@ public class PickUp : MonoBehaviour
 
         transform.parent = null;
         transform.position = pickUpHelper.transform.position;
+
+        pickUpHelper = null;
     }
 
     bool canSnap()
