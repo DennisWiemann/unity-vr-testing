@@ -136,8 +136,8 @@ public class PickUp : MonoBehaviour
         Debug.Log("other z: " + otherEuler.z + " me: " + meEuler.z);
 
         float xDiff = Mathf.DeltaAngle(otherEuler.x, meEuler.x);
-        float yDiff = Mathf.DeltaAngle(otherEuler.x, meEuler.x);
-        float zDiff = Mathf.DeltaAngle(otherEuler.x, meEuler.x);
+        float yDiff = Mathf.DeltaAngle(otherEuler.y, meEuler.y);
+        float zDiff = Mathf.DeltaAngle(otherEuler.z, meEuler.z);
 
         Debug.Log("xDiff " + xDiff);
         Debug.Log("yDiff " + yDiff);
