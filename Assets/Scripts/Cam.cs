@@ -17,6 +17,7 @@ public class Cam : MonoBehaviour
     // smooth the mouse moving
     private Vector2 smoothV;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,9 +27,10 @@ public class Cam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!character.GetComponent<NetworkIdentity>().isLocalPlayer) {
-            return;
-        }
+        // if (!character.GetComponent<NetworkIdentity>().isLocalPlayer) {
+        //     enabled = false;
+        //     return;
+        // }
 
         if (Input.GetKey(KeyCode.R)) {
             return;

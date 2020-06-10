@@ -93,12 +93,11 @@ public class PickUp : MonoBehaviour
 
     void Pick()
     {
-
         foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")) {
             if (player.GetComponent<NetworkIdentity>().isLocalPlayer) {
                 Debug.Log("Player detected");
 
-                pickUpHelper = player.transform.Find("Main Camera").transform.Find("PickUpHelper");
+                pickUpHelper = FindGameObjectInChildWithTag(player, "MainCamera").transform.Find("PickUpHelper");
 
                 isPicked = true;
                 transform.GetComponent<Rigidbody>().useGravity = false;
@@ -111,7 +110,6 @@ public class PickUp : MonoBehaviour
             }
         
         }
-
         
     }
 
@@ -168,6 +166,21 @@ public class PickUp : MonoBehaviour
         return false;
     }
 
+    public static GameObject FindGameObjectInChildWithTag (GameObject parent, string tag)
+    {
+        Transform t = parent.transform;
+
+        for (int i = 0; i < t.childCount; i++) 
+        {
+            if(t.GetChild(i).gameObject.tag == tag)
+            {
+                return t.GetChild(i).gameObject;
+            }
+                
+        }
+            
+        return null;
+    }
     
 
 }
