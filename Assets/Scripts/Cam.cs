@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class Cam : MonoBehaviour
 {
@@ -10,21 +11,27 @@ public class Cam : MonoBehaviour
     [SerializeField]
     public float smoothing = 2.0f;
     // the chacter is the capsule
-    public GameObject character;
+    private GameObject character;
     // get the incremental value of mouse moving
     private Vector2 mouseLook;
     // smooth the mouse moving
     private Vector2 smoothV;
 
+
     // Start is called before the first frame update
     void Start()
     {
-        character = this.transform.parent.gameObject;
+        character = transform.parent.gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // if (!character.GetComponent<NetworkIdentity>().isLocalPlayer) {
+        //     enabled = false;
+        //     return;
+        // }
+
         if (Input.GetKey(KeyCode.R)) {
             return;
         }
