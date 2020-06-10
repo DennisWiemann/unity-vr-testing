@@ -119,9 +119,9 @@ public class PickUp : MonoBehaviour
         transform.GetComponent<Rigidbody>().useGravity = true;
         transform.GetComponent<Rigidbody>().isKinematic = false;
 
-        transform.parent = null;
         transform.position = pickUpHelper.transform.position;
 
+        transform.parent = null;
         pickUpHelper = null;
     }
 
