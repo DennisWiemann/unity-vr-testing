@@ -6,7 +6,13 @@ using UnityEngine.Networking;
 public class PickUp : MonoBehaviour
 {
     public float rotationSpeed = 20f;
-    public float tolerance = 15;
+    public float toleranceX = 15;
+
+    public float toleranceY = 15;
+
+    public float toleranceZ = 15;
+
+    public float toleranceDistance = 0.5f;
 
     private Transform pickUpHelper;
     private GameObject tempParent; 
@@ -62,10 +68,7 @@ public class PickUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("OnTriggerEnter");
-        
-        Debug.Log(other.tag);
-        if (other.tag == "SnapPlace") 
+        if (other.tag == tag) 
         {
             this.other = other;
         }
@@ -73,7 +76,6 @@ public class PickUp : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("OnTriggerExit");
         this.other = null;
     }
 
@@ -124,27 +126,20 @@ public class PickUp : MonoBehaviour
         transform.parent = null;
         pickUpHelper = null;
     }
-
     bool canSnap()
     {
         //get eulers from this object and from the collider
         Vector3 otherEuler = other.transform.rotation.eulerAngles;
         Vector3 meEuler = transform.rotation.eulerAngles;
 
-        Debug.Log("other x: " + otherEuler.x + " me: " + meEuler.x);
-        Debug.Log("other y: " + otherEuler.y + " me: " + meEuler.y);
-        Debug.Log("other z: " + otherEuler.z + " me: " + meEuler.z);
-
         float xDiff = Mathf.DeltaAngle(otherEuler.x, meEuler.x);
         float yDiff = Mathf.DeltaAngle(otherEuler.y, meEuler.y);
         float zDiff = Mathf.DeltaAngle(otherEuler.z, meEuler.z);
 
-        Debug.Log("xDiff " + xDiff);
-        Debug.Log("yDiff " + yDiff);
-        Debug.Log("zDiff " + zDiff);
+        float distance = Vector3.Distance(other.transform.position, transform.position);
 
         //check are axes correct
-        if (Mathf.Abs(xDiff) < tolerance && Mathf.Abs(yDiff) < tolerance && Mathf.Abs(zDiff) < tolerance) {
+        if ((Mathf.Abs(xDiff) < toleranceX && Mathf.Abs(yDiff) < toleranceY && Mathf.Abs(zDiff) < toleranceZ) && (distance < toleranceDistance)) {
             
             Debug.Log("Can Snap!");
 

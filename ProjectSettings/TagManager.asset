@@ -6,6 +6,9 @@ TagManager:
   tags:
   - PickUp
   - SnapPlace
+  - Cube
+  - SnapItemCube
+  - SnapItemCapsule
   layers:
   - Default
   - TransparentFX
